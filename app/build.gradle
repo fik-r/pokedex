@@ -54,6 +54,7 @@ dependencies {
     implementation(libs.swiperefresh)
     implementation(libs.hilt)
     implementation(libs.flexbox)
+    implementation(libs.shimmer)
 
     annotationProcessor(libs.glide.compiler)
     debugImplementation(libs.chucker)

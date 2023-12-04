@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -37,6 +38,12 @@ class InventoryFragment : Fragment() {
 
     private fun initViews() {
         with(binding) {
+            tvTitle.isVisible = false
+            btnInventory.isVisible = false
+            btnBack.isVisible = true
+            btnBack.setOnClickListener {
+                requireActivity().onBackPressed()
+            }
             refresh.setOnRefreshListener {
                 refresh.isRefreshing = false
                 viewModel.getPokemons()
@@ -62,7 +69,8 @@ class InventoryFragment : Fragment() {
     private fun subscribeLiveData() {
         with(viewModel) {
             isLoading.observe(requireActivity()) {
-                binding.loading.visibility = if (it) View.VISIBLE else View.GONE
+                binding.shimmerList.visibility = if (it) View.VISIBLE else View.GONE
+                if(it) binding.shimmerList.startShimmer() else binding.shimmerList.stopShimmer()
             }
             pokemons.observe(requireActivity()) {
                 adapter.pokemons = it.toMutableList()

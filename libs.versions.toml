@@ -21,8 +21,10 @@ mockk = "1.13.3"
 room = "2.4.3"
 swiperefresh = "1.1.0"
 flexbox = "3.0.0"
+shimmer = "0.5.0"
 
 [libraries]
+shimmer = { module = "com.facebook.shimmer:shimmer", version.ref = "shimmer"}
 flexbox = { module = "com.google.android.flexbox:flexbox", version.ref = "flexbox" }
 material = { module = "com.google.android.material:material", version.ref = "material" }
 appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }

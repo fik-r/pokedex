@@ -67,7 +67,8 @@ class HomeFragment : Fragment() {
     private fun subscribeLiveData() {
         with(viewModel) {
             isLoading.observe(requireActivity()) {
-                binding.loading.visibility = if (it) View.VISIBLE else View.GONE
+                binding.shimmerList.visibility = if (it) View.VISIBLE else View.GONE
+                if(it) binding.shimmerList.startShimmer() else binding.shimmerList.stopShimmer()
             }
             pokemons.observe(requireActivity()) {
                 adapter.pokemons = it.toMutableList()
