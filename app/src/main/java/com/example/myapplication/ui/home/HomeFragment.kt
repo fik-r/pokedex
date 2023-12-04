@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -67,7 +68,8 @@ class HomeFragment : Fragment() {
     private fun subscribeLiveData() {
         with(viewModel) {
             isLoading.observe(requireActivity()) {
-                binding.shimmerList.visibility = if (it) View.VISIBLE else View.GONE
+                binding.shimmerList.isVisible = it
+                binding.rvList.isVisible = !it
                 if(it) binding.shimmerList.startShimmer() else binding.shimmerList.stopShimmer()
             }
             pokemons.observe(requireActivity()) {

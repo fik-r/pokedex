@@ -69,7 +69,8 @@ class InventoryFragment : Fragment() {
     private fun subscribeLiveData() {
         with(viewModel) {
             isLoading.observe(requireActivity()) {
-                binding.shimmerList.visibility = if (it) View.VISIBLE else View.GONE
+                binding.shimmerList.isVisible = it
+                binding.rvList.isVisible = !it
                 if(it) binding.shimmerList.startShimmer() else binding.shimmerList.stopShimmer()
             }
             pokemons.observe(requireActivity()) {
